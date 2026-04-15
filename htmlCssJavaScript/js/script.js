@@ -12,7 +12,14 @@ const imagenes = [
 let indice = 0;
 
 function actualizarImagen() {
-  document.getElementById("imagenCarrusel").src = imagenes[indice];
+  const img = document.getElementById("imagenCarrusel");
+  img.classList.add("fade-out");
+
+  setTimeout(() => {
+    img.src = imagenes[indice];
+    img.offsetHeight;
+    img.classList.remove("fade-out");
+  }, 1000);
 }
 
 function siguienteImagen() {
@@ -25,6 +32,13 @@ function anteriorImagen() {
   actualizarImagen();
 }
 
+function iniciarCarruselAutomatico(){
+  setInterval(()=>{
+    siguienteImagen();
+  }, 3000);
+}
+
+
 function mostrar(id) {
   const secciones = document.querySelectorAll("#contenido > *");
   secciones.forEach(sec => sec.classList.add("oculto"));
@@ -35,6 +49,8 @@ let modoEdicion = false;
 let indiceEdicion = null;
 
 document.addEventListener('DOMContentLoaded', () => {
+  actualizarImagen();
+  iniciarCarruselAutomatico();
   const form = document.getElementById('formContacto');
   const mensaje = document.getElementById('mensajeGuardado');
 

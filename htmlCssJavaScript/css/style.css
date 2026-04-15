@@ -21,6 +21,11 @@ body {
   object-fit: cover;
   object-position: center;
   display: block;
+  opacity: 1;
+  transition: opacity 1s ease-in-out;
+}
+.nav-carrusel img.fade-out{
+  opacity: 0;
 }
 .nav-carrusel button {
   position: absolute;
